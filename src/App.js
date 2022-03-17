@@ -25,6 +25,7 @@ function App() {
 
   return (
     <div className="App">
+      <h1>MyTodoList</h1>
       <TodoForm value={input} submit={handleSubmit} change={handleChange}/>
       <TodoList todoList={todos} deleteTodo={deleteTodo}/>
     </div>
