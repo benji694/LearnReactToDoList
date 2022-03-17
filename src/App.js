@@ -1,29 +1,32 @@
-import logo from './logo.svg';
 import './App.css';
+import React from 'react';
 import { useState } from 'react';
+import TodoForm from './TodoForm.js';
+import TodoList from './TodoList.js';
 
 function App() {
-  const [todo, setTodo] = useState([]);
+  const [todos, setTodos] = useState([]);
+  const [identity, setIdentity] = useState(0);
   const [input, setInput] = useState('');
+  const handleChange = (e) => {
+      setInput(e.target.value);
+  }
+  const handleSubmit = () => {
+    const element = {valeur: input, id: identity, completed: false};
+    setTodos([...todos, element]);
+    setIdentity(identity + 1);
+    setInput('');
+    console.log(element)
+  }
+  const deleteTodo = (num) => {
+    setTodos(todos.filter((e) => {return e.id !== num}));
+  }
 
-  const handleChange = e =>{
-    setInput(e.target.value);
-  };
 
-  let element = {id: Math.floor(Math.random()*10000), filter: 'todo', balise: <li><span>{input}</span> <button onClick={()=>{
-    todo.splice(todo.indexOf(this));
-  }}>delete</button></li>};
   return (
     <div className="App">
-      <input value={input} type="text" placeholder='add a todo' name='text' onChange={handleChange}/>
-      <button onClick={()=>{
-        setTodo([...todo, element]);
-        setInput('');
-      }}>ADD</button>
-      <ul>
-        {todo.map((e)=>{return e.balise})}
-      </ul>
-      
+      <TodoForm value={input} submit={handleSubmit} change={handleChange}/>
+      <TodoList todoList={todos} deleteTodo={deleteTodo}/>
     </div>
   );
 }
