@@ -21,17 +21,9 @@ function App() {
   const deleteTodo = (num) => {
     setTodos(todos.filter((e) => {return e.id !== num}));
   }
-  const [btnTodo, setBtnTodo] = useState('todo');
   const changeCompleted = (num) => {
     todos[num].completed = !(todos[num].completed);
-    for(let i = 0; i < todos.length; i++){
-      if(todos[i].completed == false){
-        setBtnTodo('todo')
-      }
-      else{
-        setBtnTodo('done')
-      }
-    }
+    console.log(todos)
   }
 
 
@@ -39,7 +31,7 @@ function App() {
     <div className="App">
       <h1 className='mt-3 mb-3'>MyTodoList</h1>
       <TodoForm value={input} submit={handleSubmit} change={handleChange}/>
-      <TodoList todoList={todos} deleteTodo={deleteTodo} completed={changeCompleted} btnTodo={btnTodo}/>
+      <TodoList todoList={todos} deleteTodo={deleteTodo} completed={changeCompleted}/>
     </div>
   );
 }
