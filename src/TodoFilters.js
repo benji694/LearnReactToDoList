@@ -1,13 +1,41 @@
-import React from 'react';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import React, { useState } from "react";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 function TodoFilters(props) {
-    
-    return (
-      <div className="input-group mb-3">
-          <input className='form-control' value={props.value} type='text' name='todo' onChange={props.change} autoComplete='off' placeholder='Add a todo...'/>
-          <button className='input-group-text' id='basic-addon2' type='submit' onClick={props.submit}>ADD</button>
-      </div>
-    );
-  }
-  
-  export default TodoFilters;
+  return (
+    <div
+      className="btn-group fixed-bottom w-10"
+      role="group"
+      aria-label="Basic example"
+    >
+      <button
+        type="button"
+        className="btn btn-dark"
+        onClick={() => {
+          props.changeFilter("all");
+        }}
+      >
+        All
+      </button>
+      <button
+        type="button"
+        className="btn btn-dark"
+        onClick={() => {
+          props.changeFilter("todo");
+        }}
+      >
+        Todo
+      </button>
+      <button
+        type="button"
+        className="btn btn-dark"
+        onClick={() => {
+          props.changeFilter("done");
+        }}
+      >
+        Done
+      </button>
+    </div>
+  );
+}
+
+export default TodoFilters;
